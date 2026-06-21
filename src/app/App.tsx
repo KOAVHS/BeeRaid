@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Users, Zap, Heart, TrendingUp, ExternalLink, Clock, Radio, Star, Shield, ChevronRight, X } from "lucide-react";
+import { Users, Zap, Heart, TrendingUp, ExternalLink, Clock, Radio, Star, Shield, ChevronRight, X, UserPlus, ListPlus, Rocket } from "lucide-react";
 import { BeeLogo } from "./components/brand/BeeLogo";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -228,7 +228,9 @@ function RaidModal({ streamer, onClose }: { streamer: Streamer; onClose: () => v
 
         {sent ? (
           <div className="text-center py-4">
-            <div className="text-5xl mb-4">🐝</div>
+            <div className="flex justify-center mb-4">
+              <BeeLogo size={56} />
+            </div>
             <h3 className="text-2xl font-bold text-accent mb-2" style={{ fontFamily: "Fredoka, sans-serif" }}>
               ¡Raid enviado!
             </h3>
@@ -292,9 +294,11 @@ function JoinModal({ onClose }: { onClose: () => void }) {
 
         {step === 2 ? (
           <div className="text-center py-4">
-            <div className="text-5xl mb-4">🍯</div>
+            <div className="flex justify-center mb-4">
+            <BeeLogo size={56} />
+            </div>
             <h3 className="text-2xl font-bold text-accent mb-2" style={{ fontFamily: "Fredoka, sans-serif" }}>
-              ¡Bienvenido a la Colmena!
+              ¡Bienvenido a BeeRaid!
             </h3>
             <p className="text-muted-foreground text-sm mb-6">Tu canal <strong className="text-foreground">/{form.channel}</strong> está en la cola. Otros streamers pronto vendrán a apoyarte.</p>
             <button onClick={onClose} className="px-6 py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold hover:bg-accent transition-colors" style={{ fontFamily: "Fredoka, sans-serif" }}>
@@ -374,7 +378,7 @@ export default function App() {
           <div className="flex items-center gap-2.5">
             <BeeLogo size={28} />
             <span className="text-lg font-bold text-foreground" style={{ fontFamily: "Fredoka, sans-serif" }}>
-              La Colmena
+              BeeRaid
             </span>
             <span className="hidden sm:block text-[10px] font-mono text-muted-foreground border border-border rounded px-1.5 py-0.5 ml-1">
               RAID MATCH
@@ -473,36 +477,38 @@ export default function App() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              {
-                num: "01",
-                emoji: "🐣",
-                title: "Regístrate en la colmena",
-                body: "Añade tu canal de Twitch, tu categoría y una breve descripción de tu stream. En menos de un minuto estás listo.",
-              },
-              {
-                num: "02",
-                emoji: "🍯",
-                title: "Entra a la cola de raids",
-                body: "Cuando termines tu stream, pon tu canal en modo disponible. Verás otros streamers haciendo lo mismo.",
-              },
-              {
-                num: "03",
-                emoji: "🚀",
-                title: "Recibe y da raids",
-                body: "Haz raid a quien mejor encaje con tu audiencia. Gana visibilidad genuina y haz crecer toda la comunidad.",
-              },
-            ].map(({ num, emoji, title, body }) => (
-              <div key={num} className="relative bg-card border border-border rounded-2xl p-7 hover:border-primary/40 transition-all duration-300 group">
-                <div className="absolute top-5 right-5 font-mono text-4xl font-bold text-border group-hover:text-primary/20 transition-colors select-none">
-                  {num}
-                </div>
-                <div className="text-4xl mb-5">{emoji}</div>
-                <h3 className="text-lg font-bold text-foreground mb-2" style={{ fontFamily: "Fredoka, sans-serif" }}>
-                  {title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{body}</p>
-              </div>
-            ))}
+  {
+    num: "01",
+    icon: UserPlus,
+    title: "Regístrate en la colmena",
+    body: "Añade tu canal de Twitch, tu categoría y una breve descripción de tu stream. En menos de un minuto estás listo.",
+  },
+  {
+    num: "02",
+    icon: ListPlus,
+    title: "Entra a la cola de raids",
+    body: "Cuando termines tu stream, pon tu canal en modo disponible. Verás otros streamers haciendo lo mismo.",
+  },
+  {
+    num: "03",
+    icon: Rocket,
+    title: "Recibe y da raids",
+    body: "Haz raid a quien mejor encaje con tu audiencia. Gana visibilidad genuina y haz crecer toda la comunidad.",
+  },
+].map(({ num, icon: StepIcon, title, body }) => (
+  <div key={num} className="relative bg-card border border-border rounded-2xl p-7 hover:border-primary/40 transition-all duration-300 group">
+    <div className="absolute top-5 right-5 font-mono text-4xl font-bold text-border group-hover:text-primary/20 transition-colors select-none">
+      {num}
+    </div>
+    <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
+      <StepIcon className="size-6 text-primary" />
+    </div>
+    <h3 className="text-lg font-bold text-foreground mb-2" style={{ fontFamily: "Fredoka, sans-serif" }}>
+      {title}
+    </h3>
+    <p className="text-sm text-muted-foreground leading-relaxed">{body}</p>
+  </div>
+))}
           </div>
         </div>
       </section>
@@ -590,11 +596,11 @@ export default function App() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <BeeLogo size={20} />
-            <span className="font-bold text-foreground" style={{ fontFamily: "Fredoka, sans-serif" }}>La Colmena</span>
+            <span className="font-bold text-foreground" style={{ fontFamily: "Fredoka, sans-serif" }}>BeeRaid</span>
             <span className="text-xs text-muted-foreground">· Hecho con amor por la comunidad</span>
           </div>
           <div className="flex items-center gap-5 text-xs text-muted-foreground">
-            <span>Comunidad de streamers hispanohablantes</span>
+            <span>Comunidad de streamers / Twitch</span>
             <span className="font-mono bg-secondary px-2 py-1 rounded border border-border text-accent">v1.0</span>
           </div>
         </div>
